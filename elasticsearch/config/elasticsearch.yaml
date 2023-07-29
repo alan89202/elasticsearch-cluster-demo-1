@@ -13,6 +13,8 @@ spec:
       node.roles: [ master ]
     podTemplate:
       spec:
+        nodeSelector:
+          type: master
         containers:
         - name: elasticsearch
           resources:
@@ -28,6 +30,8 @@ spec:
       node.store.allow_mmap: false
     podTemplate:
       spec:
+        nodeSelector:
+          type: hot
         containers:
         - name: elasticsearch
           resources:
@@ -43,6 +47,8 @@ spec:
       node.store.allow_mmap: false
     podTemplate:
       spec:
+        nodeSelector:
+          type: warm
         containers:
         - name: elasticsearch
           resources:
