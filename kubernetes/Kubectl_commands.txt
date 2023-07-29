@@ -1,3 +1,5 @@
 kubectl get nodes
 kubectl get namespaces
 kubectl create namespace cluster-elastic-demo
+kubectl -n cluster-elastic-demo get pods
+kubectl apply -f elasticsearch.yaml      # ubicarse en la ruta del repositorio de github primero
