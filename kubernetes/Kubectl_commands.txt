@@ -1,0 +1,3 @@
+kubectl get nodes
+kubectl get namespaces
+kubectl create namespace cluster-elastic-demo
