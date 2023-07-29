@@ -18,9 +18,6 @@ spec:
         containers:
         - name: elasticsearch
           resources:
-            requests:
-              memory: 2Gi
-              cpu: 0.5
             limits:
               memory: 2Gi  
   - name: datahot-nodes
@@ -35,9 +32,6 @@ spec:
         containers:
         - name: elasticsearch
           resources:
-            requests:
-              memory: 4Gi
-              cpu: 1
             limits:
               memory: 4Gi   
   - name: datawarm-nodes
@@ -52,9 +46,6 @@ spec:
         containers:
         - name: elasticsearch
           resources:
-            requests:
-              memory: 3Gi
-              cpu: 0.5
             limits:
               memory: 3Gi      
   - name: coord-node
@@ -67,9 +58,6 @@ spec:
         containers:
         - name: elasticsearch
           resources:
-            requests:
-              memory: 512Mi
-              cpu: 0.5
             limits:
               memory: 512Mi  
   http:
