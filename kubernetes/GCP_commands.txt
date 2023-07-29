@@ -1,0 +1,1 @@
+gcloud container clusters create elastic-demo --num-nodes 6 --machine-type e2-standard-2 --zone europe-west1-b
