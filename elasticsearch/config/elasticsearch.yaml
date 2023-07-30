@@ -8,10 +8,10 @@ spec:
   monitoring:
     metrics:
       elasticsearchRefs:
-      - name: monitoring
+      - name: elastic-demo-alvaro
    logs:
       elasticsearchRefs:
-      - name: monitoring
+      - name: elastic-demo-alvaro
   nodeSets:
   - name: master-nodes
     count: 3
