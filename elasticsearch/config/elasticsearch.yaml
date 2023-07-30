@@ -29,9 +29,9 @@ spec:
                 - key: cloud.google.com/gke-nodepool
                   operator: In
                   values:
-                  - elastic-pool
+                  - master-pool
         tolerations:
-        - key: elastic-only
+        - key: master-only
           operator: Equal
           value: "true"
           effect: NoSchedule
@@ -58,7 +58,7 @@ spec:
                 - key: cloud.google.com/gke-nodepool
                   operator: In
                   values:
-                  - hot-nodes-1
+                  - hot-pool
         tolerations:
         - key: elastic-hot-data
           operator: Equal
@@ -87,9 +87,9 @@ spec:
                 - key: cloud.google.com/gke-nodepool
                   operator: In
                   values:
-                  - elastic-pool
+                  - warm-pool
         tolerations:
-        - key: elastic-only
+        - key: elastic-warm-data
           operator: Equal
           value: "true"
           effect: NoSchedule
@@ -116,9 +116,9 @@ spec:
                 - key: cloud.google.com/gke-nodepool
                   operator: In
                   values:
-                  - elastic-pool
+                  - general-stack-pool
         tolerations:
-        - key: elastic-only
+        - key: elk-only
           operator: Equal
           value: "true"
           effect: NoSchedule
