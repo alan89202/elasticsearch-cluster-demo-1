@@ -17,19 +17,18 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - matchExpressions:
-                - key: cloud.google.com/gke-nodepool
-                  operator: In
-                  values:
-                  - general-stack-pool
-        tolerations:
-        - key: elk-only
-          operator: Equal
-          value: "true"
-          effect: NoSchedule
+            - matchExpressions:
+              - key: cloud.google.com/gke-nodepool
+                operator: In
+                values:
+                - general-stack-pool
+      tolerations:
+      - key: elk-only
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
       containers:
       - name: kibana
         env:
-          - name: NODE_OPTIONS
-            value: "--max-old-space-size=2048"
-          
+        - name: NODE_OPTIONS
+          value: "--max-old-space-size=2048"
