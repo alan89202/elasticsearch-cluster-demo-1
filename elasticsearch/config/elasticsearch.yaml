@@ -5,6 +5,13 @@ metadata:
   namespace: cluster-elastic-demo
 spec:
   version: 8.9.0
+  monitoring:
+    metrics:
+      elasticsearchRefs:
+      - name: monitoring
+   logs:
+      elasticsearchRefs:
+      - name: monitoring
   nodeSets:
   - name: master-nodes
     count: 3
