@@ -38,7 +38,7 @@ spec:
   - name: datahot-nodes
     count: 1
     config:
-      node.roles: [ data_hot, ingest ]
+      node.roles: ["data_hot", "data_content", "ingest"]
       node.store.allow_mmap: false
     podTemplate:
       metadata:
@@ -67,7 +67,7 @@ spec:
   - name: datawarm-nodes
     count: 1
     config:
-      node.roles: [ data_warm, ingest ]
+      node.roles: ["data_warm"]
       node.store.allow_mmap: false
     podTemplate:
       metadata:
