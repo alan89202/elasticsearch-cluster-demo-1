@@ -122,8 +122,5 @@ spec:
           operator: Equal
           value: "true"
           effect: NoSchedule
-  http:
-    tls:
-      selfSignedCertificate:
-        disabled: true
+  
      
