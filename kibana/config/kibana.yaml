@@ -1,7 +1,8 @@
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
-  name: elastic-demo-alvaro
+  name: kibana
+  namespace: cluster-elastic-demo
 spec:
   version: 8.9.0
   count: 1
