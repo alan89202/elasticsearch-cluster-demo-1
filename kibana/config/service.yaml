@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana-external-service
+  namespace: cluster-elastic-demo
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+    load-balancer.beta.kubernetes.io/azure-load-balancer-resource-group: "myResourceGroup"
+    kubernetes.io/ingress.global-static-ip-name: "elastic-ip"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5601
+    targetPort: 5601
+  selector:
+    common.k8s.elastic.co/type: kibana
