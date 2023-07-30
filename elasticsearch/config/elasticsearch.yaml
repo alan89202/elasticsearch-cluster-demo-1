@@ -12,54 +12,116 @@ spec:
       node.store.allow_mmap: false
       node.roles: [ master ]
     podTemplate:
+      metadata:
+        labels:
+          env: dev
       spec:
-        nodeSelector:
-          type: master
-        containers:
-        - name: elasticsearch
-          resources:
-            limits:
-              memory: 2Gi  
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                  - elastic-pool
+        tolerations:
+        - key: elastic-only
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
   - name: datahot-nodes
-    count: 2
+    count: 1
     config:
       node.roles: [ data_hot, ingest ]
       node.store.allow_mmap: false
     podTemplate:
+      metadata:
+        labels:
+          env: dev
       spec:
-        nodeSelector:
-          type: hot
-        containers:
-        - name: elasticsearch
-          resources:
-            limits:
-              memory: 4Gi   
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                  - hot-nodes-1
+        tolerations:
+        - key: elastic-hot-data
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
   - name: datawarm-nodes
-    count: 2
+    count: 1
     config:
       node.roles: [ data_warm, ingest ]
       node.store.allow_mmap: false
     podTemplate:
+      metadata:
+        labels:
+          env: dev
       spec:
-        nodeSelector:
-          type: warm
-        containers:
-        - name: elasticsearch
-          resources:
-            limits:
-              memory: 3Gi      
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                  - elastic-pool
+        tolerations:
+        - key: elastic-only
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
   - name: coord-node
     count: 1
     config:
       node.roles: [ ]
       node.store.allow_mmap: false
     podTemplate:
+      metadata:
+        labels:
+          env: dev
       spec:
-        containers:
-        - name: elasticsearch
-          resources:
-            limits:
-              memory: 512Mi  
+        initContainers:
+        - name: sysctl
+          securityContext:
+            privileged: true
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: cloud.google.com/gke-nodepool
+                  operator: In
+                  values:
+                  - elastic-pool
+        tolerations:
+        - key: elastic-only
+          operator: Equal
+          value: "true"
+          effect: NoSchedule
   http:
     tls:
       selfSignedCertificate:
