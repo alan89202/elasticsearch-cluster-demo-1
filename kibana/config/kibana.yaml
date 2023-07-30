@@ -34,8 +34,4 @@ spec:
         operator: Equal
         value: "true"
         effect: NoSchedule
-      containers:
-      - name: kibana
-        env:
-        - name: NODE_OPTIONS
-          value: "--max-old-space-size=2048"
+      
