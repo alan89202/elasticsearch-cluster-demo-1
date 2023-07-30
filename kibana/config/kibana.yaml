@@ -5,6 +5,13 @@ metadata:
   namespace: cluster-elastic-demo
 spec:
   version: 8.9.0
+  monitoring:
+    metrics:
+      elasticsearchRefs:
+      - name: elastic-demo-alvaro
+   logs:
+      elasticsearchRefs:
+      - name: elastic-demo-alvaro
   count: 1
   elasticsearchRef:
     name: elastic-demo-alvaro
