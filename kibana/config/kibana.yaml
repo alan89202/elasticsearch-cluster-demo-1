@@ -9,7 +9,7 @@ spec:
     metrics:
       elasticsearchRefs:
       - name: elastic-demo-alvaro
-   logs:
+    logs:
       elasticsearchRefs:
       - name: elastic-demo-alvaro
   count: 1
