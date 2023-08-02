@@ -14,7 +14,7 @@ terraform {
 provider "google" {
   credentials = file(var.GCP_CREDENTIALS)
 
-  project = "<PROJECT_ID>"
+  project = "alvaro-demo-elastic-000001"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
